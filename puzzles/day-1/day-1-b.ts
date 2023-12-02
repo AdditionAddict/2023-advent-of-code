@@ -7,8 +7,8 @@ export async function day1b(dataPath?: string) {
   let answer = 0;
 
   const regex1 =
-    /\D?(one|two|three|four|five|six|seven|eight|nine|\d){1}.*(one|two|three|four|five|six|seven|eight|nine|\d){1}\D?/;
-  const regex2 = /\D?(one|two|three|four|five|six|seven|eight|nine|\d){1}\D?/;
+    /(one|two|three|four|five|six|seven|eight|nine|\d){1}.*(one|two|three|four|five|six|seven|eight|nine|\d){1}/;
+  const regex2 = /(one|two|three|four|five|six|seven|eight|nine|\d){1}/;
 
   for (let i = 0; i < data.length; i++) {
     const matches = data[i].match(regex1) ?? data[i].match(regex2);
