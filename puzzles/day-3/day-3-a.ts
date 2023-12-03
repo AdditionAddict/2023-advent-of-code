@@ -1,19 +1,6 @@
 import { readData } from '../../shared.ts';
 import chalk from 'chalk';
 
-// 467..114..
-// ...*......
-// ..35..633.
-// ......#...
-// 617*......
-// .....+.58.
-// ..592.....
-// ......755.
-// ...$.*....
-// .664.598..
-
-const regexSymbol = /\b([^.\D]){1}\b/g;
-
 export async function day3a(dataPath?: string) {
   const data = await readData(dataPath);
 

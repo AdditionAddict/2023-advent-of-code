@@ -11,8 +11,6 @@ export async function day2b(dataPath?: string) {
   let sumPower = 0;
 
   for (let game of data) {
-    const gameId = +game.match(/Game (\d+).*/)[1];
-
     const redPicked = [...game.matchAll(regexRed)].map((m) => +m[1]);
     const greenPicked = [...game.matchAll(regexGreen)].map((m) => +m[1]);
     const bluePicked = [...game.matchAll(regexBlue)].map((m) => +m[1]);

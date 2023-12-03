@@ -8,7 +8,6 @@ export async function day3b(dataPath?: string) {
 
   // each number location starts at some (a, b)
   const partNumberStart = new Map<string, number>();
-  const partNumberStarts = new Set<string>();
   // map other parts of the number to the start
   // (a,b) -> (a,b), (a, b+1) -> (a,b) etc.
   const partLookup = new Map<string, string>();
