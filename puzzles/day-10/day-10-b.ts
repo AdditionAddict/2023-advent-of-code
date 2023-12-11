@@ -178,35 +178,20 @@ export async function day10b(dataPath?: string) {
       if (loopMap.has(`${i}_${j}`)) {
         continue;
       } else {
-        let crossingHorizontal = 0;
-        let criteriaForCrossing: 'F' | 'J' | 'L' | '7' | null = null;
+        const remainingHorizontal = data[i]
+          .slice(j + 1)
+          .split('')
+          .map((char, x) => (loopMap.has(`${i}_${j + 1 + x}`) ? char : '.'))
+          .join('');
 
-        for (let k = j + 1; k < data[i].length; k++) {
-          if (loopMap.has(`${i}_${k}`)) {
-            if (data[i][k] === '|') {
-              crossingHorizontal++;
-            } else if (criteriaForCrossing !== null) {
-              if (data[i][k] === criteriaForCrossing) {
-                crossingHorizontal++;
-                criteriaForCrossing = null;
-              } else if (data[i][k] === '-') {
-                // do nothing
-              } else {
-                criteriaForCrossing = null;
-              }
-            } else if (data[i][k] === 'F') {
-              // F - ... - J
-              criteriaForCrossing = 'J';
-            } else if (data[i][k] === 'L') {
-              // L - ... - 7
-              criteriaForCrossing = '7';
-            }
-          } else {
-            criteriaForCrossing = null;
-          }
-        }
+        // regex to match
+        // 1. |
+        // 2. F (exactly once) - (0 or more) - J (exactly once)
+        // 3. L (exactly once) - (0 or more) - 7 (exactly once)
+        const regex = /(\|)|(F-*J)|(L-*7)/g;
+        const matches = remainingHorizontal.match(regex);
 
-        totalInsideLoop += crossingHorizontal % 2;
+        totalInsideLoop += (matches?.length ?? 0) % 2;
       }
     }
   }
